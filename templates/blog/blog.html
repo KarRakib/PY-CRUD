@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="card my-2 py-2" >
+    <div class="card-body">
+      <div class="media">
+        <img class="mr-3 rounded-circle" style="width: 50px;" src="{{post.author.profile.image.url}}" alt="Generic placeholder image" />
+        <a href=" ">
+          <p class="font-weight-bold">{{post.author}} </p>
+        </a>
+        {% if object.author == user %}
+        <a href="{% url "updatePost" object.id %}" class="btn btn-primary">Update</a >
+        <a href="{% url "deletePost" object.id %} " class="btn btn-danger">Detete</a>
+        {% endif %}
+        <div class="media-body">
+        <a href="{% url "postDetails" object.id %}">
+          <h5 class="mt-0">{{ object.title }}</h5>
+          <p>{{object.date}}</p>
+        </a>
+          {{ post.content }}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock content %}
